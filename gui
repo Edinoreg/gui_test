@@ -1,0 +1,144 @@
+from tkinter import *
+
+expression = ""
+
+def press(num):
+    global expression
+    expression += str(num)
+    equation.set(expression)
+
+def equalpress():
+    global expression
+    try:
+        total = str(eval(expression))
+        equation.set(total)
+        expression = total
+    except:
+        equation.set("Error")
+
+def clean():
+    global expression
+    expression = ""
+    equation.set(expression)
+
+def clean1():
+    global expression
+    expression = expression[:-1]
+    equation.set(expression)
+
+def abs():
+    global expression
+    if int(expression) > 0:
+        try:
+            expression = f"-{expression}"
+            equation.set(expression)
+        except:
+            equation.set("Error")
+    elif int(expression) < 0:
+        try:
+            expression = expression[1:]
+            equation.set(expression)
+        except:
+            equation.set("Error")
+
+if __name__ == "__main__":
+    gui = Tk()
+    gui.configure(background="#2a2b2b")
+    gui.geometry("360x360")
+    gui.title("Калькулятор")
+    equation = StringVar()
+
+
+    expression_field = Label(gui, textvariable=equation, width=14, font=("Arial", 30), bg="#2a2b2b", fg="#e6e6e6")
+    expression_field.grid(sticky="w", padx=30, pady=50, columnspan=100)
+
+    button7= Button(gui, font=("Arial",13), fg="white",text='7', height=2, width=6, command= lambda: press(7), bg="#525354")
+    button7.grid(row=2, column=0)
+
+    button8 = Button(gui, font=("Arial", 13), fg="white", text='8', height=2, width=6, command=lambda: press(8),
+                     bg="#525354")
+    button8.grid(row=2, column=1)
+
+    button9 = Button(gui, font=("Arial", 13), fg="white", text='9', height=2, width=6, command=lambda: press(9),
+                     bg="#525354")
+    button9.grid(row=2, column=2)
+
+    inv = Label(gui, font=("Arial", 13), fg="white", text='', height=2, width=3,
+                     bg="#2a2b2b")
+    inv.grid(row=2, column=3)
+
+    clear = Button(gui, font=("Arial", 13), fg="white", text='AC', height=2, width=6, command=clean,
+                     bg="#525354")
+    clear.grid(row=2, column=4)
+
+    clear1 = Button(gui, font=("Arial", 13), fg="white", text='X', height=2, width=6, command=clean1,
+                  bg="#525354")
+    clear1.grid(row=2, column=5)
+
+    button4 = Button(gui, font=("Arial", 13), fg="white", text='4', height=2, width=6, command=lambda: press(4),
+                     bg="#525354")
+    button4.grid(row=3, column=0)
+
+    button5 = Button(gui, font=("Arial", 13), fg="white", text='5', height=2, width=6, command=lambda: press(5),
+                     bg="#525354")
+    button5.grid(row=3, column=1)
+
+    button6 = Button(gui, font=("Arial", 13), fg="white", text='6', height=2, width=6, command=lambda: press(6),
+                     bg="#525354")
+    button6.grid(row=3, column=2)
+
+    inv = Label(gui, font=("Arial", 13), fg="white", text='', height=2, width=3,
+                bg="#2a2b2b")
+    inv.grid(row=3, column=3)
+
+    multiply = Button(gui, font=("Arial", 13), fg="white", text='*', height=2, width=6, command=lambda: press("*"),
+                  bg="#525354")
+    multiply.grid(row=3, column=4)
+
+    divide = Button(gui, font=("Arial", 13), fg="white", text='/', height=2, width=6, command=lambda: press("/"),
+                   bg="#525354")
+    divide.grid(row=3, column=5)
+
+    button1 = Button(gui, font=("Arial", 13), fg="white", text='1', height=2, width=6, command=lambda: press(1),
+                     bg="#525354")
+    button1.grid(row=4, column=0)
+
+    button2 = Button(gui, font=("Arial", 13), fg="white", text='2', height=2, width=6, command=lambda: press(2),
+                     bg="#525354")
+    button2.grid(row=4, column=1)
+
+    button3 = Button(gui, font=("Arial", 13), fg="white", text='3', height=2, width=6, command=lambda: press(3),
+                     bg="#525354")
+    button3.grid(row=4, column=2)
+
+    inv = Label(gui, font=("Arial", 13), fg="white", text='', height=2, width=3,
+                bg="#2a2b2b")
+    inv.grid(row=4, column=3)
+
+    plus = Button(gui, font=("Arial", 13), fg="white", text='+', height=2, width=6, command=lambda: press("+"),
+                      bg="#525354")
+    plus.grid(row=4, column=4)
+
+    minus = Button(gui, font=("Arial", 13), fg="white", text='-', height=2, width=6, command=lambda: press("-"),
+                    bg="#525354")
+    minus.grid(row=4, column=5)
+
+    abs = Button(gui, font=("Arial", 13), fg="white", text='+-', height=2, width=6, command=abs,
+                     bg="#525354")
+    abs.grid(row=5, column=0)
+
+    button0 = Button(gui, font=("Arial", 13), fg="white", text='0', height=2, width=6, command=lambda: press(0),
+                     bg="#525354")
+    button0.grid(row=5, column=1)
+
+    point = Button(gui, font=("Arial", 13), fg="white", text='.', height=2, width=6, command=lambda: press("."),
+                     bg="#525354")
+    point.grid(row=5, column=2)
+
+    equal = Button(gui, font=("Arial", 13), fg="white", text='=', height=2, width=6, command=equalpress,
+                  bg="#dfa6e0")
+    equal.grid(row=5, column=4)
+
+
+
+    gui.mainloop()
